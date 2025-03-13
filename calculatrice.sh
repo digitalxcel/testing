@@ -1,28 +1,71 @@
 #!/bin/bash
 
-echo "Bienvenue dans la calculatrice Bash"
-echo "Entrez le premier nombre : "
-read num1
+echo "Bienvenue dans la calculatrice Bash !"
+while true; do
+    echo "----------------------------"
+    echo "Choisissez une opération :"
+    echo "1 - Addition"
+    echo "2 - Soustraction"
+    echo "3 - Multiplication"
+    echo "4 - Division"
+    echo "5 - Quitter"
+    echo "----------------------------"
+    read -p "Votre choix : " choix
 
-echo "Entrez le second nombre : "
-read num2
+    if [ "$choix" -eq 5 ]; then
+        echo "Merci d'avoir utilisé la calculatrice !"
+        break
+    fi
 
-echo "Choisissez une opération (+, -, *, /) : "
-read op
+    read -p "Entrez le premier nombre : " num1
+    read -p "Entrez le deuxième nombre : " num2
 
-case $op in
-    +) result=$(echo "$num1 + $num2" | bc) ;;
-    -) result=$(echo "$num1 - $num2" | bc) ;;
-    \*) result=$(echo "$num1 * $num2" | bc) ;;
-    /) 
-        if [ "$num2" -eq 0 ]; then
-            echo "Erreur : Division par zéro !"
-            exit 1
-        else
-            result=$(echo "scale=2; $num1 / $num2" | bc)
-        fi
-        ;;
-    *) echo "Opération invalide"; exit 1 ;;
-esac
+    case $choix in
+        1) echo "Résultat : $(($num1 + $num2))" ;;
+        2) echo "Résultat : $(($num1 - $num2))" ;;
+        3) echo "Résultat : $(($num1 * $num2))" ;;
+        4) if [ "$num2" -ne 0 ]; then
+               echo "Résultat : $(($num1 / $num2))"
+           else
+               echo "Erreur : Division par zéro impossible !"
+           fi ;;
+        *) echo "Choix invalide, veuillez réessayer !" ;;
+    esac
+    echo ""
+done
+#!/bin/bash
 
-echo "Résultat : $result"
+echo "Bienvenue dans la calculatrice Bash !"
+while true; do
+    echo "----------------------------"
+    echo "Choisissez une opération :"
+    echo "1 - Addition"
+    echo "2 - Soustraction"
+    echo "3 - Multiplication"
+    echo "4 - Division"
+    echo "5 - Quitter"
+    echo "----------------------------"
+    read -p "Votre choix : " choix
+
+    if [ "$choix" -eq 5 ]; then
+        echo "Merci d'avoir utilisé la calculatrice !"
+        break
+    fi
+
+    read -p "Entrez le premier nombre : " num1
+    read -p "Entrez le deuxième nombre : " num2
+
+    case $choix in
+        1) echo "Résultat : $(($num1 + $num2))" ;;
+        2) echo "Résultat : $(($num1 - $num2))" ;;
+        3) echo "Résultat : $(($num1 * $num2))" ;;
+        4) if [ "$num2" -ne 0 ]; then
+               echo "Résultat : $(($num1 / $num2))"
+           else
+               echo "Erreur : Division par zéro impossible !"
+           fi ;;
+        *) echo "Choix invalide, veuillez réessayer !" ;;
+    esac
+    echo ""
+done
+
